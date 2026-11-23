@@ -1,317 +1,319 @@
 <div align="center">
-  <img src="./public/icon.svg" width="88" height="88" alt="Ícone do EasyFit" />
+  <img src="./public/icon.svg" width="88" height="88" alt="EasyFit icon" />
 
   # EasyFit
 
-  ### Alimentação, evolução corporal e treino em um só lugar.
+  ### Nutrition, body progress and training in one place.
 
-  PWA mobile-first construída para tornar o acompanhamento de saúde simples, rápido e honesto — sem inventar nutrientes, esconder dados incompletos ou depender de APIs pagas.
+  A mobile-first PWA that makes health tracking simple, fast and honest: it never invents nutrients, never hides incomplete data and never depends on paid APIs.
 
-  [![EasyFit CI](https://github.com/UxUchoa/EasyFit/actions/workflows/ci.yml/badge.svg)](https://github.com/UxUchoa/EasyFit/actions/workflows/ci.yml)
+  [![EasyFit CI](https://github.com/UchoaEng/EasyFit/actions/workflows/ci.yml/badge.svg)](https://github.com/UchoaEng/EasyFit/actions/workflows/ci.yml)
   [![Next.js](https://img.shields.io/badge/Next.js-16-111111?logo=nextdotjs)](https://nextjs.org/)
   [![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)](https://react.dev/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
   [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
   [![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?logo=prisma)](https://www.prisma.io/)
-  [![PWA](https://img.shields.io/badge/PWA-instalável-166534?logo=pwa&logoColor=white)](https://web.dev/explore/progressive-web-apps)
+  [![PWA](https://img.shields.io/badge/PWA-installable-166534?logo=pwa&logoColor=white)](https://web.dev/explore/progressive-web-apps)
 
-  **[Abrir aplicação](https://easy-fit-phi.vercel.app)** · [Começar localmente](#rodando-localmente) · [Reportar problema](https://github.com/UxUchoa/EasyFit/issues)
+  **[Open the app](https://easy-fit-phi.vercel.app)** · [Run locally](#running-locally) · [Report an issue](https://github.com/UchoaEng/EasyFit/issues) · [🇧🇷 Português](#-português)
 
-  <sub>Feito para celular, internet instável e uma rotina de verdade.</sub>
+  <sub>Built for phones, flaky connections and real routines.</sub>
 </div>
 
 ---
 
-<div align="center">
-  <a href="#sobre-o-projeto">Visão geral</a> ·
-  <a href="#tecnologias">Stack</a> ·
-  <a href="#arquitetura">Arquitetura</a> ·
-  <a href="#rodando-localmente">Instalação</a> ·
-  <a href="#supabase--vercel">Deploy</a> ·
-  <a href="#comandos-úteis">Comandos</a>
-</div>
+## About
 
-<br />
+EasyFit brings together a food diary, nutrition goals, body measurements and workout planning in an experience designed for the phone first.
 
-## Sobre o projeto
+It is a full-stack app: the frontend and the API routes live in the same Next.js project, Prisma handles the data layer and PostgreSQL runs either locally with Docker or remotely on Supabase.
 
-O EasyFit reúne diário alimentar, metas nutricionais, medidas corporais e planejamento de treinos em uma experiência pensada primeiro para o celular.
-
-A aplicação é full-stack: o frontend e as rotas de API vivem no mesmo projeto Next.js, o Prisma cuida da camada de dados e o PostgreSQL pode rodar localmente via Docker ou remotamente no Supabase.
-
-| 📱 Mobile-first | 🥗 Nutrição sem chute | 🏋️ Treino adaptável | 🛜 Resiliente |
+| 📱 Mobile-first | 🥗 No-guess nutrition | 🏋️ Adaptive training | 🛜 Resilient |
 | :---: | :---: | :---: | :---: |
-| Interface pensada para uso com uma mão | Dados incompletos ficam visíveis | Planos revisáveis por divisão e objetivo | PWA, cache e fila offline |
+| One-handed interface | Incomplete data stays visible | Plans reviewable by split and goal | PWA, cache and offline queue |
 
-### O que já funciona
+### What works today
 
-| Área | Recursos |
+| Area | Features |
 | --- | --- |
-| **Dieta** | Registros planejados e consumidos, refeições personalizadas, correção com histórico, cópia de refeições e resumo de macros. |
-| **Alimentos** | Pesquisa manual, favoritos, recentes, catálogo privado, TACO e consulta gratuita ao Open Food Facts. |
-| **Código de barras** | Leitura pela câmera no próprio aparelho, busca por GTIN e cadastro manual quando o produto não existe. |
-| **Treinos** | Sugestões revisáveis Full body, AB, ABC, ABCD e ABCDE para força ou hipertrofia; montagem manual, pesquisa, importação JSON, sessões, séries e substituições. |
-| **Evolução** | Relatórios nutricionais, aderência aos treinos, volume por exercício e evolução de medidas corporais. |
-| **Conta** | Sessões, exportação e exclusão de dados, consentimentos, lembretes e preferências pessoais. |
-| **Experiência** | PWA instalável, fila offline, conflitos recuperáveis, skeleton loading, navegação responsiva e bottom sheets no mobile. |
+| **Diet** | Planned and consumed entries, custom meals, corrections with history, meal copying and macro summary. Imported diet plans can be edited item by item, including swapping a food for a catalog match. |
+| **Foods** | Manual search, favorites, recents, private catalog, TACO (Brazilian table), USDA FoodData Central and free Open Food Facts lookup. USDA food names are shown translated to Portuguese. |
+| **Barcode** | On-device camera scanning, GTIN lookup and manual entry when the product doesn't exist. |
+| **Workouts** | Reviewable Full body, AB, ABC, ABCD and ABCDE suggestions for strength or hypertrophy; manual building, search, JSON import, sessions, sets and substitutions. Exercises can be moved between workouts, and editing is optimized for mobile. |
+| **Live session** | Estimated total and remaining workout time (sets plus rest) and estimated calories based on duration, body weight and volume. |
+| **Progress** | Nutrition reports, workout adherence, volume per exercise and body measurement trends. |
+| **Account** | Sessions, data export and deletion, consents, reminders and personal preferences. |
+| **Experience** | Installable PWA, offline queue, recoverable conflicts, skeleton loading, responsive navigation and bottom sheets on mobile. |
 
-## Tecnologias
+## Tech stack
 
-- **Next.js 16** com App Router, Server Components e Route Handlers
-- **React 19** e **TypeScript 5**
-- **Tailwind CSS 4** para a interface
-- **PostgreSQL 17** e **Prisma 6**
-- **ZXing** para leitura local de códigos de barras
-- **Open Food Facts** como base aberta de produtos
-- **Vitest**, **Playwright** e **axe-core** para qualidade e acessibilidade
-- **Vercel** para aplicação e APIs; **Supabase** como PostgreSQL gerenciado
+- **Next.js 16** with App Router, Server Components and Route Handlers
+- **React 19** and **TypeScript 5**
+- **Tailwind CSS 4** for the UI
+- **PostgreSQL 17** and **Prisma 6**
+- **ZXing** for on-device barcode scanning
+- **Open Food Facts**, **TACO** and **USDA FoodData Central** as open nutrition sources
+- **Vitest**, **Playwright** and **axe-core** for quality and accessibility
+- **Vercel** for the app and APIs; **Supabase** as managed PostgreSQL
 
 > [!TIP]
-> Nenhuma API paga é obrigatória. A leitura do código de barras acontece no aparelho, e a consulta usa Open Food Facts e o catálogo nacional como fontes abertas.
+> No paid API is required. Barcode reading happens on the device, and lookups use open sources.
 
-## Arquitetura
+## Architecture
 
 ```mermaid
 flowchart LR
-    U["PWA no celular ou navegador"] --> N["Next.js App Router"]
+    U["PWA on phone or browser"] --> N["Next.js App Router"]
     N --> A["Route Handlers / API"]
     A --> P["Prisma ORM"]
     P --> D[("PostgreSQL / Supabase")]
     A --> O["Open Food Facts"]
-    A --> T["Catálogo nacional / TACO"]
-    N --> Q["Fila offline no dispositivo"]
+    A --> T["TACO / USDA FoodData Central"]
+    N --> Q["Offline queue on device"]
     Q --> A
 ```
 
 ```text
-app/          páginas, layouts e endpoints HTTP
-components/   componentes de interface e fluxos interativos
-lib/          domínio, autenticação, integrações e acesso a dados
-prisma/       schema e migrations versionadas
-public/       manifest, service worker e ícone da PWA
-tests/        testes unitários, integração e E2E
+app/          pages, layouts and HTTP endpoints
+components/   UI components and interactive flows
+lib/          domain, auth, integrations and data access
+prisma/       schema and versioned migrations
+public/       manifest, service worker and PWA icon
+tests/        unit, integration and E2E tests
 ```
 
-## Rodando localmente
+## Running locally
 
-### Pré-requisitos
+### Prerequisites
 
-- [Node.js 24.x](https://nodejs.org/)
-- npm 11 ou superior
-- PostgreSQL 17, local ou remoto
-- Docker, opcionalmente, para subir o PostgreSQL local
+- [Node.js 24.x](https://nodejs.org/) and npm 11+
+- PostgreSQL 17, local or remote (Docker is optional for a local database)
 
-### 1. Clone e instale
+### 1. Clone and install
 
 ```bash
-git clone https://github.com/UxUchoa/EasyFit.git
+git clone https://github.com/UchoaEng/EasyFit.git
 cd EasyFit
 npm install
 ```
 
-### 2. Configure o banco
+### 2. Set up the database
 
-Você pode usar Supabase ou um PostgreSQL local. Para subir um banco descartável com Docker:
+Use Supabase or a local PostgreSQL. For a disposable database with Docker:
 
 ```bash
-docker run --name easyfit-postgres \
-  -e POSTGRES_USER=postgres \
-  -e POSTGRES_PASSWORD=postgres \
-  -e POSTGRES_DB=easyfit \
-  -p 5432:5432 \
-  -d postgres:17-alpine
-```
-
-No PowerShell, o mesmo comando pode ser executado em uma linha:
-
-```powershell
 docker run --name easyfit-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=easyfit -p 5432:5432 -d postgres:17-alpine
 ```
 
-As migrations de segurança também protegem as roles da API do Supabase. Em um PostgreSQL local recém-criado, crie essas duas roles compatíveis uma única vez:
+The security migrations also lock down Supabase's API roles. On a fresh local PostgreSQL, create these two compatible roles once:
 
 ```bash
 docker exec easyfit-postgres psql -U postgres -d easyfit -c "CREATE ROLE anon NOLOGIN;"
 docker exec easyfit-postgres psql -U postgres -d easyfit -c "CREATE ROLE authenticated NOLOGIN;"
 ```
 
-Se estiver usando PostgreSQL local sem Docker, execute os mesmos comandos SQL como administrador do banco antes das migrations.
+Without Docker, run the same SQL as a database admin before the migrations.
 
-### 3. Crie o arquivo de ambiente
-
-```powershell
-Copy-Item .env.example .env
-```
-
-No Linux ou macOS:
+### 3. Create the environment file
 
 ```bash
-cp .env.example .env
+cp .env.example .env        # PowerShell: Copy-Item .env.example .env
 ```
 
-Para o PostgreSQL local, ajuste o começo do `.env`:
+For a local PostgreSQL, adjust the top of `.env`:
 
 ```dotenv
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/easyfit?schema=public"
 DIRECT_URL="postgresql://postgres:postgres@localhost:5432/easyfit?schema=public"
-SESSION_SECRET="substitua-por-uma-chave-aleatoria-com-no-minimo-32-caracteres"
+SESSION_SECRET="replace-with-a-random-key-of-at-least-32-characters"
 APP_URL="http://localhost:3000"
 OPEN_FOOD_FACTS_CONTACT="http://localhost:3000"
 ```
 
 > [!IMPORTANT]
-> Use apenas um par de aspas em cada valor. Um `"` extra no final da `DATABASE_URL` faz o Prisma interpretar `schema=public` incorretamente.
+> Use a single pair of quotes per value. An extra `"` at the end of `DATABASE_URL` makes Prisma misread `schema=public`.
 
-Você pode gerar um segredo seguro com Node.js:
+Generate a secure secret with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`.
 
-```bash
-node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-```
-
-### 4. Prepare o Prisma
+### 4. Prepare Prisma
 
 ```bash
 npm run prisma:generate
 npm run prisma:deploy
 ```
 
-`prisma:deploy` aplica as migrations que já estão versionadas no projeto. Ao desenvolver uma mudança nova de schema, use:
+`prisma:deploy` applies the migrations already in the project. For a new schema change, use `npm run prisma:migrate -- --name change_name`.
 
-```bash
-npm run prisma:migrate -- --name nome_da_alteracao
-```
-
-### 5. Inicie a aplicação
+### 5. Start the app
 
 ```bash
 npm run dev
 ```
 
-Acesse [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000).
 
-## Variáveis de ambiente
+## Environment variables
 
-O arquivo [`.env.example`](./.env.example) contém a lista completa e valores seguros de exemplo.
+[`.env.example`](./.env.example) has the full list with safe sample values.
 
-| Variável | Uso |
+| Variable | Purpose |
 | --- | --- |
-| `DATABASE_URL` | Conexão usada pela aplicação; no Supabase/Vercel, use o Transaction Pooler. |
-| `DIRECT_URL` | Conexão direta usada pelas migrations; no Supabase, use o Session Pooler. |
-| `SESSION_SECRET` | Assina as sessões e deve ter ao menos 32 caracteres aleatórios. |
-| `SESSION_TTL_DAYS` | Validade absoluta da sessão. |
-| `SESSION_ROTATION_HOURS` | Intervalo de rotação do token. |
-| `APP_URL` | Origem canônica usada nas validações de segurança. |
-| `ALLOWED_ORIGINS` | Origens adicionais autorizadas, separadas por vírgula. |
-| `OPEN_FOOD_FACTS_CONTACT` | URL ou e-mail de contato enviado à base aberta. |
-| `OPEN_FOOD_FACTS_*` | Timeout, tentativas, circuit breaker e limites lógicos da integração. |
-| `USDA_FDC_API_KEY` | Chave gratuita do FoodData Central; `DEMO_KEY` serve para testes com quota menor. |
-| `USDA_FDC_*` | Timeout, tentativas, circuit breaker e limite lógico da consulta nutricional. |
+| `DATABASE_URL` | App connection; on Supabase/Vercel use the Transaction Pooler. |
+| `DIRECT_URL` | Direct connection for migrations; on Supabase use the Session Pooler. |
+| `SESSION_SECRET` | Signs sessions; at least 32 random characters. |
+| `SESSION_TTL_DAYS` / `SESSION_ROTATION_HOURS` | Absolute session lifetime and token rotation interval. |
+| `APP_URL` / `ALLOWED_ORIGINS` | Canonical origin and extra allowed origins (comma-separated) for security checks. |
+| `OPEN_FOOD_FACTS_CONTACT` / `OPEN_FOOD_FACTS_*` | Contact sent to the open database; timeout, retries, circuit breaker and limits. |
+| `USDA_FDC_API_KEY` / `USDA_FDC_*` | Free FoodData Central key (`DEMO_KEY` works for testing with a lower quota); timeout, retries and limits. |
 
 > [!CAUTION]
-> Nunca envie `.env`, senhas, chaves ou URLs reais de banco para o Git. O arquivo já está protegido pelo `.gitignore`.
+> Never commit `.env`, passwords, keys or real database URLs. `.env` is already in `.gitignore`.
 
 ## Supabase + Vercel
 
-O Supabase é usado somente como PostgreSQL gerenciado. Autenticação, sessões e regras da aplicação continuam no backend do EasyFit.
+Supabase is used only as managed PostgreSQL. Auth, sessions and business rules stay in EasyFit's backend.
 
-1. Crie um projeto no Supabase.
-2. Em **Connect → ORM → Prisma**, copie as duas conexões:
-   - Transaction Pooler, porta `6543`, para `DATABASE_URL`;
-   - Session Pooler, porta `5432`, para `DIRECT_URL`.
-3. Preencha `.env` localmente e execute `npm run prisma:deploy` uma única vez para aplicar as migrations.
-4. Importe este repositório na Vercel, mantendo o diretório raiz como `./`.
-5. Cadastre as variáveis da `.env.example` no ambiente **Production** da Vercel.
-6. Defina `APP_URL` com a URL HTTPS final, sem barra no final.
-7. Faça o deploy. O [`vercel.json`](./vercel.json) já direciona as funções para São Paulo (`gru1`).
+1. Create a Supabase project.
+2. In **Connect → ORM → Prisma**, copy the Transaction Pooler (port `6543`) to `DATABASE_URL` and the Session Pooler (port `5432`) to `DIRECT_URL`.
+3. Fill in `.env` locally and run `npm run prisma:deploy` once.
+4. Import this repository on Vercel with `./` as the root directory.
+5. Add the `.env.example` variables to Vercel's **Production** environment, with `APP_URL` set to the final HTTPS URL (no trailing slash).
+6. Deploy. [`vercel.json`](./vercel.json) already pins functions to São Paulo (`gru1`).
 
 > [!NOTE]
-> Frontend e backend sobem juntos na Vercel. Alterações apenas no código não exigem reconfigurar o Supabase; basta um novo deploy. O banco só precisa de `prisma:deploy` quando existir uma migration nova.
+> Frontend and backend deploy together. Code-only changes just need a new deploy; the database only needs `prisma:deploy` when there's a new migration. Use a separate database for Preview environments.
 
-Para ambientes Preview, use outro banco ou outro projeto Supabase. Não conecte previews nem testes ao banco de produção.
+## Useful commands
 
-## Comandos úteis
-
-| Comando | Descrição |
+| Command | Description |
 | --- | --- |
-| `npm run dev` | Inicia o servidor de desenvolvimento. |
-| `npm run build` | Gera o build otimizado de produção. |
-| `npm start` | Executa o build de produção. |
-| `npm run lint` | Verifica regras de qualidade do código. |
-| `npm run typecheck` | Valida os tipos sem gerar arquivos. |
-| `npm test` | Executa os testes unitários. |
-| `npm run test:integration` | Executa a suíte de integração. |
-| `npm run test:e2e` | Executa os fluxos E2E com Playwright. |
-| `npm run prisma:generate` | Gera o Prisma Client. |
-| `npm run prisma:deploy` | Aplica migrations já existentes. |
-| `npm run prisma:migrate -- --name exemplo` | Cria uma migration durante o desenvolvimento. |
+| `npm run dev` | Development server. |
+| `npm run build` / `npm start` | Production build and run. |
+| `npm run lint` / `npm run typecheck` | Lint and type checks. |
+| `npm test` | Unit tests. |
+| `npm run test:integration` | Integration suite (needs `RUN_INTEGRATION_TESTS=1`). |
+| `npm run test:e2e` | Playwright E2E flows, including mobile layout. |
+| `npm run prisma:generate` / `prisma:deploy` / `prisma:migrate` | Prisma client, apply migrations, create a migration. |
 
-### Testes de integração e E2E
+Run integration and E2E tests only against a disposable PostgreSQL. CI provisions PostgreSQL, applies migrations and runs lint, types, unit, integration, mobile E2E, axe audit and build.
 
-Use exclusivamente um PostgreSQL descartável. As suítes criam e removem registros durante a execução.
+## Security and privacy
 
-No PowerShell:
+- Passwords hashed with **Argon2id**; session tokens stored only as hashes and rotated periodically.
+- CSP, HSTS, anti-framing and a restrictive permissions policy.
+- Origin validation for mutations, internal roles, support scopes and an audit trail.
+- Data export and deletion requests for the account owner.
+- A lockdown migration that blocks Supabase's public roles from Prisma's tables.
 
-```powershell
-$env:RUN_INTEGRATION_TESTS="1"
-npm run test:integration
-npx playwright install chromium
-npm run test:e2e
-```
-
-A integração contínua já provisiona PostgreSQL, aplica as migrations e executa lint, tipos, testes unitários, integração, E2E mobile, auditoria axe e build.
-
-## Segurança e privacidade
-
-- Senhas protegidas com **Argon2id**.
-- Tokens de sessão persistidos somente como hash e rotacionados periodicamente.
-- CSP, HSTS, proteção contra framing e política restritiva de permissões.
-- Validação de origem para mutações e suporte a origens explicitamente autorizadas.
-- Papéis internos, escopos de suporte e trilha de auditoria.
-- Exportação e solicitação de exclusão dos dados do titular.
-- Migration de lockdown para impedir acesso das roles públicas do Supabase às tabelas do Prisma.
-
-## Solução de problemas
+## Troubleshooting
 
 <details>
 <summary><strong>Prisma P1001: Can't reach database server</strong></summary>
 
-- Confirme que o container está rodando com `docker ps`.
-- Verifique se a URL usa `localhost:5432`, e não o texto literal `HOST:5432`.
-- Confirme usuário, senha, nome do banco e porta.
-- No Supabase, confira se copiou o host do pooler e se o projeto está ativo.
+Check `docker ps`, make sure the URL uses `localhost:5432` (not a literal `HOST`), and confirm user, password, database and port. On Supabase, check the pooler host and that the project is active.
 
 </details>
 
 <details>
-<summary><strong>Erro de identificador entre aspas próximo a public</strong></summary>
+<summary><strong>Quoted identifier error near "public"</strong></summary>
 
-Remova aspas duplicadas no fim da URL. O valor correto termina assim:
-
-```dotenv
-DATABASE_URL="postgresql://postgres:senha@localhost:5432/easyfit?schema=public"
-```
+Remove duplicated quotes at the end of the URL. It should end with `...?schema=public"`.
 
 </details>
 
 <details>
-<summary><strong>Cadastro retorna 403 na Vercel</strong></summary>
+<summary><strong>Sign-up returns 403 on Vercel</strong></summary>
 
-- Defina `APP_URL` exatamente com a origem pública, por exemplo `https://easy-fit-phi.vercel.app`.
-- Não coloque barra no final.
-- Confira `ALLOWED_ORIGINS` se estiver usando outro domínio.
-- Faça um novo deploy depois de alterar variáveis na Vercel.
+Set `APP_URL` to the exact public origin (e.g. `https://easy-fit-phi.vercel.app`, no trailing slash), check `ALLOWED_ORIGINS` for other domains, and redeploy after changing variables.
 
 </details>
 
 <details>
-<summary><strong>Produto não encontrado pelo código de barras</strong></summary>
+<summary><strong>Product not found by barcode</strong></summary>
 
-O Open Food Facts é uma base colaborativa e pode não possuir todos os produtos brasileiros. O usuário ainda pode pesquisar pelo nome, consultar o catálogo nacional ou cadastrar manualmente os valores do rótulo.
+Open Food Facts is collaborative and may not have every Brazilian product. Search by name, use the national catalog or enter the label values manually.
 
 </details>
 
 ---
 
+## 🇧🇷 Português
+
+### Alimentação, evolução corporal e treino em um só lugar.
+
+PWA mobile-first para tornar o acompanhamento de saúde simples, rápido e honesto: sem inventar nutrientes, sem esconder dados incompletos e sem depender de APIs pagas. **[Abrir aplicação](https://easy-fit-phi.vercel.app)**
+
+### Sobre o projeto
+
+O EasyFit reúne diário alimentar, metas nutricionais, medidas corporais e planejamento de treinos em uma experiência pensada primeiro para o celular. É full-stack: frontend e rotas de API ficam no mesmo projeto Next.js, o Prisma cuida dos dados e o PostgreSQL roda localmente via Docker ou no Supabase.
+
+| Área | Recursos |
+| --- | --- |
+| **Dieta** | Registros planejados e consumidos, refeições personalizadas, correção com histórico, cópia de refeições e resumo de macros. Planos de dieta importados podem ser editados item a item, inclusive trocando o alimento por um do catálogo. |
+| **Alimentos** | Pesquisa manual, favoritos, recentes, catálogo privado, TACO, USDA FoodData Central e Open Food Facts gratuito. Os nomes de alimentos da USDA aparecem traduzidos para o português. |
+| **Código de barras** | Leitura pela câmera no próprio aparelho, busca por GTIN e cadastro manual quando o produto não existe. |
+| **Treinos** | Sugestões revisáveis Full body, AB, ABC, ABCD e ABCDE para força ou hipertrofia; montagem manual, pesquisa, importação JSON, sessões, séries e substituições. Exercícios podem ser movidos entre treinos, e a edição foi otimizada para o celular. |
+| **Sessão ao vivo** | Estimativa do tempo total e restante do treino (séries mais descanso) e estimativa de calorias com base em duração, peso corporal e volume. |
+| **Evolução** | Relatórios nutricionais, aderência aos treinos, volume por exercício e evolução das medidas. |
+| **Conta** | Sessões, exportação e exclusão de dados, consentimentos, lembretes e preferências. |
+| **Experiência** | PWA instalável, fila offline, conflitos recuperáveis, skeleton loading, navegação responsiva e bottom sheets no mobile. |
+
+### Tecnologias
+
+Next.js 16 (App Router, Server Components, Route Handlers), React 19, TypeScript 5, Tailwind CSS 4, PostgreSQL 17, Prisma 6, ZXing, Open Food Facts, TACO, USDA FoodData Central, Vitest, Playwright, axe-core, Vercel e Supabase. Nenhuma API paga é obrigatória.
+
+### Rodando localmente
+
+Pré-requisitos: Node.js 24.x, npm 11+ e PostgreSQL 17 (Docker opcional).
+
+```bash
+git clone https://github.com/UchoaEng/EasyFit.git
+cd EasyFit
+npm install
+docker run --name easyfit-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=easyfit -p 5432:5432 -d postgres:17-alpine
+docker exec easyfit-postgres psql -U postgres -d easyfit -c "CREATE ROLE anon NOLOGIN;"
+docker exec easyfit-postgres psql -U postgres -d easyfit -c "CREATE ROLE authenticated NOLOGIN;"
+cp .env.example .env        # PowerShell: Copy-Item .env.example .env
+npm run prisma:generate
+npm run prisma:deploy
+npm run dev
+```
+
+As roles `anon` e `authenticated` existem porque as migrations de segurança também protegem as roles da API do Supabase. No `.env`, use o bloco de exemplo da versão em inglês acima para o PostgreSQL local, com **apenas um par de aspas** por valor (um `"` extra no fim da `DATABASE_URL` quebra o `schema=public`). Gere o `SESSION_SECRET` com `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`. Acesse [http://localhost:3000](http://localhost:3000).
+
+### Variáveis de ambiente
+
+A lista completa está no [`.env.example`](./.env.example). As principais: `DATABASE_URL` (Transaction Pooler no Supabase), `DIRECT_URL` (Session Pooler, usada nas migrations), `SESSION_SECRET` (mínimo de 32 caracteres), `APP_URL` e `ALLOWED_ORIGINS` (validação de origem), `OPEN_FOOD_FACTS_*` e `USDA_FDC_*` (integrações; `DEMO_KEY` serve para testes). Nunca envie `.env`, senhas ou URLs reais de banco para o Git.
+
+### Supabase + Vercel
+
+O Supabase é usado só como PostgreSQL gerenciado; autenticação e regras ficam no backend do EasyFit.
+
+1. Crie um projeto no Supabase e, em **Connect → ORM → Prisma**, copie o Transaction Pooler (porta `6543`) para `DATABASE_URL` e o Session Pooler (porta `5432`) para `DIRECT_URL`.
+2. Rode `npm run prisma:deploy` uma vez com o `.env` preenchido.
+3. Importe o repositório na Vercel (raiz `./`), cadastre as variáveis no ambiente **Production** e defina `APP_URL` com a URL HTTPS final, sem barra no fim.
+4. Faça o deploy. O [`vercel.json`](./vercel.json) já direciona as funções para São Paulo (`gru1`).
+
+Mudanças só de código precisam apenas de um novo deploy; o banco só precisa de `prisma:deploy` quando houver migration nova. Use outro banco para os ambientes de Preview.
+
+### Comandos úteis
+
+`npm run dev` (desenvolvimento), `npm run build` / `npm start` (produção), `npm run lint` / `npm run typecheck`, `npm test` (unitários), `npm run test:integration` (com `RUN_INTEGRATION_TESTS=1`), `npm run test:e2e` (Playwright, incluindo layout mobile) e `npm run prisma:generate` / `prisma:deploy` / `prisma:migrate`. Rode integração e E2E só em um PostgreSQL descartável.
+
+### Segurança e privacidade
+
+Senhas com **Argon2id**, tokens de sessão guardados só como hash e rotacionados, CSP, HSTS, proteção contra framing, validação de origem, papéis internos com trilha de auditoria, exportação e exclusão de dados do titular e uma migration de lockdown que bloqueia as roles públicas do Supabase.
+
+### Solução de problemas
+
+- **Prisma P1001:** confira `docker ps`, se a URL usa `localhost:5432`, e usuário, senha, banco e porta. No Supabase, confira o host do pooler.
+- **Erro de identificador perto de `public`:** remova aspas duplicadas no fim da URL.
+- **Cadastro retorna 403 na Vercel:** defina `APP_URL` exatamente com a origem pública, sem barra no fim, confira `ALLOWED_ORIGINS` e faça um novo deploy.
+- **Produto não encontrado pelo código de barras:** o Open Food Facts é colaborativo; pesquise pelo nome, use o catálogo nacional ou cadastre os valores do rótulo.
+
+---
+
 <div align="center">
-  Feito para uma rotina real: celular na mão, internet imperfeita e informação sem chute.
+  Built for a real routine: phone in hand, imperfect internet and no-guess information.<br>
+  <sub>Feito para uma rotina real: celular na mão, internet imperfeita e informação sem chute.</sub>
 </div>
